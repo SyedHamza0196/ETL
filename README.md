@@ -15,8 +15,8 @@ The ETL process consists of the following steps:
 3. Access token generated from HubSpot settings.
 4. MYSQL server setup
 5. Docker desktop
-8. WSL
-9. 
+6. WSL
+   
 ## Configuration
 Before running the ETL process, ensure that you have configured the following settings:
 
