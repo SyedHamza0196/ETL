@@ -1,0 +1,5 @@
+HUBSPOT:
+  base_url: "https://api.hubapi.com/crm/v3/objects/"
+  contact_api: "contacts"
+  deal_api: "deals"
+  access_token: "pat-na1-60ae18f5-8080-466c-8115-822a04cbd01b"
