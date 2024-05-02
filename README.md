@@ -47,6 +47,7 @@ http://127.0.0.1:5000/run_etl
 This command will execute the entire ETL process, including extraction, transformation, and loading of data from hubspo.
 
 ## Files and Directory Structure
+_No such directory structure is followed. All the files are in root directory_
 1. config.py: Configuration file containing API credentials and database connection settings.
 2. etl.py: Main script for executing the ETL process.
 3. pipeline.py: Orchestrates the extract transform and load process.
