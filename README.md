@@ -11,11 +11,19 @@ The ETL process consists of the following steps:
 ## Usage
 ### Prerequisites
 1. Python 3 latest version will work.
-2. Required Python packages installed. You can install them using pip install -r requirements.txt. (Or use the venv environment)
-3. Access token generated from HubSpot settings.
-4. MYSQL server setup
-5. Docker desktop
-6. WSL
+2. Clone this repository to your local machine:
+```
+foo@bar:~$ git clone https://github.com/SyedHamza0196/ETL.git
+```
+3. Create and activate a python environment called venv
+4. ```
+   python3 -m venv venv
+   venv\Scripts\activate
+   ```
+5. Required Python packages installed. You can install them using pip install -r requirements.txt.
+6. Access token generated from HubSpot settings.
+7. MYSQL server setup. You can use mysql workbench.
+8. WSL
    
 ## Configuration
 Before running the ETL process, ensure that you have configured the following settings:
@@ -23,21 +31,13 @@ Before running the ETL process, ensure that you have configured the following se
 1. HubSpot API Credentials: Obtain an access token from HubSpot's settings and update the config.yml ile with your HubSpot API key.
 2. MySQL Database: Ensure that you have a MySQL database set up and running locally. Update the config.yml file with your MySQL database credentials.
 3. Running the ETL Process
-4. Clone this repository to your local machine:
-```
-foo@bar:~$ git clone https://github.com/SyedHamza0196/ETL.git
-```
-5. initiate the environment (or create your own env and install dependencies from the requirements.txt)
-  ```
-    .venv\Scripts\ativate
-  ```
 Navigate to the project directory where app.py resides
 
 Run the ETL process:
 1. Open a terminal in the directory where app.py resides
 2. Run the flask server
 ```
-foo@bar:~$ ETL-main/flask run
+foo@bar:~$ ETL-main/flask --debug run
 ```
 This command will initiate a server on local host 5000
 On the server change the url to
@@ -51,8 +51,8 @@ _No such directory structure is followed. All the files are in root directory_
 1. config.py: Configuration file containing API credentials and database connection settings.
 2. etl.py: Main script for executing the ETL process.
 3. pipeline.py: Orchestrates the extract transform and load process.
-4. hubspot.py: Module for extracting data from HubSpot's Contacts and Deals APIs.
-5. ga_4.py: Module for extracting data from Google analytics 4.
-6. facebook.py: Module for extracting data from facebook.
-7. requirements.txt: List of Python packages required for the project.
-8. README.md: Documentation file providing an overview of the project and usage instructions.
+5. hubspot.py: Module for extracting data from HubSpot's Contacts and Deals APIs.
+6. ga_4.py: Module for extracting data from Google analytics 4.
+7. facebook.py: Module for extracting data from facebook.
+8. requirements.txt: List of Python packages required for the project.
+9. README.md: Documentation file providing an overview of the project and usage instructions.
