@@ -11,14 +11,28 @@ with open("config.yml", "r") as f:
 
 class HubSpotProcessor:
     def extract(self):
-        # Extract contact data from HubSpot
+        """
+        Extracts contact and deal data from HubSpot.
+
+        Returns:
+            dict: A dictionary containing the status and extracted data containing DEAL and CONTACT.
+        """
         hubspot_data = {}
         hubspot_data['CONTACT'] = self.extactContacts()
         hubspot_data['DEAL'] = self.extactDeals()
-
-        return hubspot_data
+        
+        return {"status": "success", "data": hubspot_data}
     
     def transform(self, hubspot_data):
+        """
+        Transforms HubSpot data.
+
+        Args:
+            hubspot_data (dict): Dictionary containing contact and deal data.
+
+        Returns:
+            dict: A dictionary containing the status and transformed dataframes.
+        """
         hubspot_data_frames = []
         objects = ['CONTACT','DEAL']
         for object in objects:
@@ -43,9 +57,19 @@ class HubSpotProcessor:
                 hubspot_deal_df = hubspot_deal_df[req_columns]
                 hubspot_data_frames.append(hubspot_deal_df)
         
-        return hubspot_data_frames
+        return {"status": "success", "data": hubspot_data_frames}
     
     def load(self, hubspot_data_frames, etl_con):
+        """
+        Loads dataframes into a MySQL database called etl in table hubspot_contact, hubspot_deal.
+
+        Args:
+            hubspot_data_frames (list): List of dataframes to be loaded.
+            etl_con: Database connection object.
+
+        Returns:
+            dict: A dictionary containing the status and load logs.
+        """
         db_cursor = etl_con.cursor()     
         hubspot_contact_df = pd.DataFrame()
         hubspot_deal_df = pd.DataFrame()
@@ -59,9 +83,6 @@ class HubSpotProcessor:
         # Insert data into tables
         logger.info(hubspot_deal_df.columns.to_list())
         for row in hubspot_deal_df.itertuples():
-            logger.info("[]\n[]\n[]\n[]\n")
-            logger.info(row)
-            logger.info("[]\n[]\n[]\n[]\n")
             sql = f"INSERT INTO etl.hubspot_deal(amount, closedate, createdate, dealstage) VALUES('{int(row.amount) if int(row.amount) else 0}', '{row.closedate}', '{row.createdate}', '{row.dealstage}')"
             db_cursor.execute(sql)
 
@@ -69,7 +90,7 @@ class HubSpotProcessor:
         #     sql = f"INSERT INTO etl.hubspot_contact(createdate) VALUES('{row.createdate}')"
         #     db_cursor.execute(sql)
             
-        # return({"status": "success", "message": "Hubspot data loaded in the DB"})
+        return {"status": "success", "data": "HUbspot data loaded into the DB"}
     
     def extactContacts(self):
         # WILL EXTRACT CONTACTS
