@@ -59,7 +59,19 @@ foo@bar:~$ git clone https://github.com/SyedHamza0196/ETL.git
 4. Required Python packages installed. You can install them using pip install -r requirements.txt.
 5. Access token generated from HubSpot settings.
 6. MYSQL server setup. You can use mysql workbench.
-   
+
+### Prerequisites Destination Data Base
+1. This project uses MySQL Workbench as a destination source
+2. Intall MySQL workbench from [here](https://dev.mysql.com/downloads/workbench/)
+3. Open workbench and and create the required databas and tables
+4. This project uses 1 database called `etl` and 7 tables
+   -device (GA look up table)
+   -event_params (GA look up table)
+   -ga (Google analitcs data)
+   -geo (GA look up table)
+   -hubspot_contact (Hubspot contact api data)
+   -hubspot_deal (Hubspot deal api data)
+   -traffic_source (GA look up table)
 ## Configuration
 Before running the ETL process, ensure that you have configured the following settings:
 
